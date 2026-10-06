@@ -2,8 +2,8 @@ import argparse
 
 parser = argparse.ArgumentParser(description="The diffusion script for our CPSC221 project.")
 
-parser.add_argument("prompt_a", type=str, help="The prompt for the untransformed image", default="Dirt path through an autumn forest")
-parser.add_argument("prompt_b", type=str, help="The prompt for the transformed image", default="Jack-o-lantern on the ground")
+parser.add_argument("prompt_a", type=str, help="The prompt for the untransformed image")
+parser.add_argument("prompt_b", type=str, help="The prompt for the transformed image")
 parser.add_argument("-s", "--squares", type=int, help="The number of squares", default=4)
 parser.add_argument("-i", "--iterations", type=int, help="The number of iterations of the distillation loop", default=1000)
 
