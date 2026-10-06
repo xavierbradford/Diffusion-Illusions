@@ -4,6 +4,7 @@
 *.pyc
 untracked
 .ipynb_checkpoints
+.venv
 
 .virtual_documents
 flippy_illusions_for_colab-Copy1.ipynb
