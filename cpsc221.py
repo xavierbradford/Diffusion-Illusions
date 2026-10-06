@@ -124,9 +124,6 @@ def get_display_image():
 s.max_step=MAX_STEP=990
 s.min_step=MIN_STEP=10
 
-television = rp.JupyterDisplayChannel()
-television.display()
-
 display_eta=rp.eta(NUM_ITER, title='Status')
 
 DISPLAY_INTERVAL = max(1, min(NUM_ITER//10, 50))
@@ -164,10 +161,9 @@ try:
             if not iter_num%max(1, DISPLAY_INTERVAL//4):
                 im = get_display_image()
                 ims.append(im)
-                television.update(im)
 
                 if not iter_num%DISPLAY_INTERVAL:
-                    rp.display_image(im)
+                    rp.save_image(im, "output_incomplete.png")
 
         optim.step()
         optim.zero_grad()
@@ -176,16 +172,16 @@ except KeyboardInterrupt:
     print('Interrupted early at iteration %i'%iter_num)
     im = get_display_image()
     ims.append(im)
-    rp.display_image(im)
+    rp.save_image(im, "output_incomplete.png")
 
-print('Unsolved Image:')
-rp.display_image(rp.as_numpy_image(learnable_image_a()))
+print('Untransformed Image:')
+rp.save_image(rp.as_numpy_image(learnable_image_a()), "output_untransformed.png")
 
-print('Solved Image:')
-rp.display_image(rp.as_numpy_image(learnable_image_b()))
+print('Transformed Image:')
+rp.save_image(rp.as_numpy_image(learnable_image_b()), "output_transformed.png")
 
 def save_run(name):
-    folder="untracked/parker_puzzle_runs/%s"%name
+    folder="output_%s"%name.replace(" ", "_")
     if rp.path_exists(folder):
         folder+='_%i'%time.time()
     rp.make_directory(folder)
