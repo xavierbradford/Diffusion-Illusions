@@ -13,8 +13,8 @@ scipy
 transformers
 diffusers
 rp
-easydict
 oldest-supported-numpy
+numpy<2
 torch
 torchvision
 torchaudio
